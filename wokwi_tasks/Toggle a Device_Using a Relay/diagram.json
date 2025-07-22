@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "author": "Ahmed Hatem",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": { "env": "micropython-20231227-v1.22.0" }
+    },
+    { "type": "wokwi-led", "id": "led1", "top": -22.8, "left": -217, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 83,
+      "left": 153.6,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 67.4, "left": -153.6, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": 48, "left": -221.4, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd2", "top": 172.8, "left": -202.2, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": -47.24, "left": -172.8, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc2", "top": -47.24, "left": -124.8, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd3", "top": 163.2, "left": 133.8, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "relay1:GND", "gnd2:GND", "black", [ "h0" ] ],
+    [ "relay1:IN", "esp:26", "green", [ "v47.8", "h158.21" ] ],
+    [ "gnd1:GND", "led1:C", "black", [ "v0" ] ],
+    [ "btn1:1.r", "esp:14", "green", [ "v-28.8", "h-105.4", "v67.2" ] ],
+    [ "vcc1:VCC", "relay1:VCC", "red", [ "v0" ] ],
+    [ "relay1:COM", "vcc2:VCC", "green", [ "h30", "v-116.6" ] ],
+    [ "relay1:NC", "led1:A", "green", [ "v0" ] ],
+    [ "btn1:2.l", "gnd3:GND", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
